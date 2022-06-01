@@ -1,0 +1,68 @@
+/*MOVIMIENTO LOGIN*/
+.mover-mensage {
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  animation: MoverDerecha 0.5s;
+}
+
+@keyframes MoverDerecha {
+  0% {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+
+.none-administrativo{ display: none;}
+.none-medico{ display: none;}
+.none-asistencial{ display: none;}
+.none-otro{ display: none;}
+
+
+
+/*ESTADO FECHA DE CIERRE*/
+.block{ display: block; animation: MoverNosotros .5s;}
+.none-fecha-cierre{ display: none;}
+.none-conclusion{ display: none;}
+
+
+
+/*ESTADO PROCEDENCIA*/
+.none-numero{ display: none;}
+.none-tomo{ display: none;}
+
+
+/*ESTADO SERVICIO: HOSPITALARIO*/
+.none-habitacion{display:none;}
+
+
+/*MOVIMINETO ESTADO SEMAFORIZACION*/
+/*ANIMACIONES KEYFRAME*/
+@keyframes MoverNosotros{
+  0%{
+      opacity: 0;
+      transform: translateX(-200px);
+  }
+  100%{
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
+
+.img-usuario{
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+  
