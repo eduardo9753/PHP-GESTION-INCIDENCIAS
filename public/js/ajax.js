@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: 'BIENVENID@',
+                        title: 'BIENVENIDO(A)',
                         showConfirmButton: false,
                         timer: 1500
                     }).then(function () {
@@ -25,7 +25,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: 'BIENVENID@',
+                        title: 'BIENVENIDO(A)',
                         showConfirmButton: false,
                         timer: 1500
                     }).then(function () {

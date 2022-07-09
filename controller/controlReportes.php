@@ -4,7 +4,7 @@
 include_once('model/modelSemaforizacion.php');
 include_once('model/modelAseets.php');
 include_once('model/modelLogin.php');
-include_once('model/modelReportes.php');;
+include_once('model/modelReportes.php');
 
 //UTILS
 include_once('utils/modelMensaje.php');

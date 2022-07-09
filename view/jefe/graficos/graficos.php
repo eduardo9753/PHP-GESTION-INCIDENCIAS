@@ -9,6 +9,7 @@
         <div class="row bg-white has-shadow">
             <!-- Item -->
             <div class="col-md-12">
+                <h1 class="lead text-center">Totales Hasta Ahora : <?php echo $dataTotal ?></h1>
                 <div class="card">
                     <div class="card-body">
                         <div class="row">

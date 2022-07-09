@@ -3,7 +3,7 @@
      <div class="container-fluid">
          <div class="row">
              <div class="col-sm-6">
-                 <p>CRISTHIAN GARCIA - AREA DE SISTEMAS &copy; <?php include_once('view/helpers/anio_actual.php'); ?></p>
+                 <p>PAUS - AREA DE SISTEMAS &copy; <?php include_once('view/helpers/anio_actual.php'); ?></p>
              </div>
              <div class="col-sm-6 text-right">
 
@@ -27,12 +27,17 @@
  <!--SWEETALERT JS-->
  <script src="lib/sweetalert/dist/sweetalert2.all.min.js"></script>
 
+ <!--JS DATATABLES-->
+ <script src="lib/datatables/datatables.js"></script>
+ <script src="lib/datatables/datatables.min.js"></script>
 
+ <!--NOTIFY-->
+ <script src="lib/notify/notify.js"></script>
 
  <!-- Main File-->
  <script src="public/assets/js/front.js"></script>
  <script src="public/js/dataTables.js"></script>
- <script src="public/js/grafico.js"></script>
+ <script src="public/js/graficoincidenciaPorMesCoord.js"></script>
  <script src="public/js/imagen.js"></script>
  <script src="public/js/estadoPaus.js"></script>
  <script src="public/js/graficoincidenciaPorMes.js"></script>
@@ -40,11 +45,9 @@
  <script src="public/js/causaEspecifica.js"></script>
  <script src="public/js/estadoProcedencia.js"></script>
  <script src="public/js/estadoHospitalario.js"></script>
- <script src="public/js/areaPorOrigen.js"></script>
-
- <!--JS DATATABLES-->
- <script src="lib/datatables/datatables.js"></script>
- <script src="lib/datatables/datatables.min.js"></script>
+ <script src="public/js/origenArea.js"></script>
+ <script src="public/js/validarCampos.js"></script>
+ <!--<script src="public/js/notificaciones.js"></script> -->
 
  </body>
 

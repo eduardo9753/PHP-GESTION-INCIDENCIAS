@@ -25,7 +25,7 @@
                                                 <!--start row-->
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" id="txt_buscador" name="txt_buscador" placeholder="Digite el Nombre o N° Documento o N° de Requimiento" required>
+                                                        <input type="text" class="form-control" id="txt_buscador" name="txt_buscador" autocomplete="off" placeholder="Digite el Nombre o N° Documento o N° de Requimiento" required>
                                                     </div>
                                                 </div>
 
@@ -50,7 +50,7 @@
                                             <tr>
                                                 <th>N°</th>
                                                 <th>PACIENTE</th>
-                                                <th>N°DOCUMENTO</th>
+                                                <th>DOCU</th>
                                                 <th>TIPO</th>
                                                 <th>ORIGEN</th>
                                                 <th>MES</th>
@@ -58,7 +58,8 @@
                                                 <th>PROCEDENCIA</th>
                                                 <th>PRIORIDAD</th>
                                                 <th>AREA</th>
-                                                <th>FECHA INCIDENTE</th>
+                                                <th>INCIDENTE</th>
+                                                <th>USUARIO</th>
                                                 <th><i class='bx bxs-file-pdf'></i></th>
                                                 <th>VIEW</th>
                                             </tr>
@@ -70,13 +71,14 @@
                                                     <td><?php echo $data->paciente ?></td>
                                                     <td><?php echo $data->numero_documento ?></td>
                                                     <td><?php echo $data->nombre_tipo_paciente ?></td>
-                                                    <td><?php echo $data->nombre_origen ?></td>
+                                                    <td class="text-center"><?php echo $data->nombre_origen ?></td>
                                                     <td><?php echo $data->mes_incidencia ?></td>
                                                     <td><?php echo $data->nombre_servicio ?></td>
-                                                    <td><?php echo $data->nombre_procedencia ?></td>
-                                                    <td><?php echo $data->nombre_prioridad ?></td>
+                                                    <td class="text-center"><?php echo $data->nombre_procedencia ?></td>
+                                                    <td class="text-center"><?php echo $data->nombre_prioridad ?></td>
                                                     <td><?php echo $data->nombre_area ?></td>
                                                     <td><?php echo $data->fecha_incidencia ?></td>
+                                                    <td class="text-center"><?php echo $data->nombre_usuario ?></td>
                                                     <td><a class="btn btn-outline-danger" href="index.php?ruta=pdfIncidencia&id=<?php echo $data->id ?>" target="_blank"><i class='bx bxs-file-pdf bx-burst'></i></a></td>
                                                     <!--<td><input type="checkbox" name="ids[]" value="<?php echo $data->id ?>" class="update_checkbox"></td>-->
                                                     <td>

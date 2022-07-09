@@ -37,7 +37,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="form-control-label">NUMERO DE DOCUMENTO</label>
-                                                        <input type="text" value="" name="txt_numero_documento" id="txt_numero_documento" class="form-control" required>
+                                                        <input type="text" value="" name="txt_numero_documento" id="txt_numero_documento" class="form-control" autocomplete="off" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -46,7 +46,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="form-control-label">PACIENTE</label>
-                                                        <input type="text" value="" name="txt_paciente" id="txt_paciente" placeholder="Nombre del Paciente" class="form-control" required>
+                                                        <input type="text" value="" name="txt_paciente" id="txt_paciente" placeholder="Nombre del Paciente" class="form-control" autocomplete="off" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -60,7 +60,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!--end row-->
+                                            
 
                                             <!--start row-->
                                             <div class="row">
@@ -77,64 +77,17 @@
                                                 </div>
 
                                                 <!--ADMINISTRATIVO-->
-                                                <div class="col-md-6 none-administrativo">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="form-control-label">AREA</label>
-                                                        <select name="cbo_area_admin" id="cbo_area_admin" class="form-control">
-                                                            <option value="administrativo">
-                                                                <--SELECCIONE-->
+                                                        <select name="cbo_area" id="cbo_area" class="form-control">
+                                                            <option value="80">
+                                                                Seleccione un ORIGEN
                                                             </option>
-                                                            <?php foreach ($dataAdministrativo as $data) : ?>
-                                                                <option value="<?php echo $data->id_area ?>"><?php echo $data->nombre_area ?></option>
-                                                            <?php endforeach; ?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <!--MEDICO-->
-                                                <div class="col-md-6 none-medico">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label">AREA</label>
-                                                        <select name="cbo_area_medico" id="cbo_area_medico" class="form-control">
-                                                            <option value="medico">
-                                                                <--SELECCIONE-->
-                                                            </option>
-                                                            <?php foreach ($dataMedico as $data) : ?>
-                                                                <option value="<?php echo $data->id_area ?>"><?php echo $data->nombre_area ?></option>
-                                                            <?php endforeach; ?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <!--ASISTENCIAL-->
-                                                <div class="col-md-6 none-asistencial">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label">AREA</label>
-                                                        <select name="cbo_area_asisten" id="cbo_area_asisten" class="form-control">
-                                                            <option value="asistencial">
-                                                                <--SELECCIONE-->
-                                                            </option>
-                                                            <?php foreach ($dataAsistencial as $data) : ?>
-                                                                <option value="<?php echo $data->id_area ?>"><?php echo $data->nombre_area ?></option>
-                                                            <?php endforeach; ?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <!--OTROS-->
-                                                <div class="col-md-6 none-otro">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label">AREA</label>
-                                                        <select name="cbo_area_otro" id="cbo_area_otro" class="form-control">
-                                                            <option value="otro">
-                                                                <--SELECCIONE-->
-                                                            </option>
-                                                            <?php foreach ($dataOtro as $data) : ?>
-                                                                <option value="<?php echo $data->id_area ?>"><?php echo $data->nombre_area ?></option>
-                                                            <?php endforeach; ?>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <!--end row-->
                                         </div>
                                         <!--end row-->
@@ -162,7 +115,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="form-control-label">PERSONAL INVOLUCRADO</label>
-                                                        <input type="text" name="txt_personal_involucrado" placeholder="Digite el Personal si aplica" id="txt_personal_involucrado" class="form-control">
+                                                        <input type="text" name="txt_personal_involucrado" placeholder="Digite el Personal si aplica" id="txt_personal_involucrado" autocomplete="off" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -204,14 +157,14 @@
                                                 <div class="col-md-3 none-numero">
                                                     <div class="form-group">
                                                         <label class="form-control-label">NUMERO</label>
-                                                        <input type="text" name="txt_numero" id="txt_numero" class="form-control">
+                                                        <input type="text" name="txt_numero" id="txt_numero" autocomplete="off" class="form-control">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-3 none-tomo">
                                                     <div class="form-group">
                                                         <label class="form-control-label">TOMO</label>
-                                                        <input type="text" value="" name="txt_tomo" id="txt_tomo" class="form-control">
+                                                        <input type="text" value="" name="txt_tomo" id="txt_tomo" autocomplete="off" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -220,7 +173,6 @@
                                 </div>
                             </div>
 
-                            <hr>
 
                             <div class="row">
                                 <!-- Basic Form-->
@@ -240,22 +192,13 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <!--<div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label">CAUSA ESPECIFICA</label>
-                                                        <select name="cbo_causa_especifica" id="cbo_causa_especifica" class="form-control">
-                                                            <?php foreach ($dataCAUSA_ESPECIFICA as $data) : ?>
-                                                                <option value="<?php echo $data->id_causa_especifica ?>"><?php echo $data->nombre_causa_especifica ?></option>
-                                                            <?php endforeach; ?>
-                                                        </select>
-                                                    </div>
-                                                </div>-->
 
+                                                <!--SE PODRIA VALIDAR ESTE CAMPOS PARA QUE SEA DISTINTO DE CERO-->
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="form-control-label">CAUSA ESPECIFICA</label>
                                                         <select name="cbo_causa_especifica" id="cbo_causa_especifica" class="form-control">
-                                                          <option value="0">Seleccione La Causa Especifica</option>
+                                                            <option value="0">Seleccione una Causa</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -267,14 +210,14 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="form-control-label">DETALLE</label>
-                                                        <textarea name="txt_detalle" id="txt_detalle" rows="4" placeholder="Resumen del Detalle" class="form-control"></textarea>
+                                                        <textarea name="txt_detalle" id="txt_detalle" rows="6" placeholder="Resumen del Detalle" class="form-control"></textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="form-control-label">ACCION INMEDIATA</label>
-                                                        <textarea name="txt_accion_inmediata" id="txt_accion_inmediata" rows="4" placeholder="Resumen de la accion inmediata" class="form-control"></textarea>
+                                                        <textarea name="txt_accion_inmediata" id="txt_accion_inmediata" rows="6" placeholder="Resumen de la accion inmediata" class="form-control"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -339,7 +282,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-6 my-2">
+                                                <div class="col-md-12 my-2">
                                                     <div class="d-flex justify-content-between">
                                                         <?php foreach ($dataTIPO_SEMAFORIZACION as $data) : ?>
                                                             <div class="form-check">
@@ -353,7 +296,7 @@
                                                 </div>
                                             </div>
 
-                                            <div><input type="submit" class="btn btn-primary w-100" value="Registrar" id="btn-registrar-semaforizacion" name="btn-registrar-semaforizacion"></div>
+                                            <div><input type="submit" class="btn btn-primary w-100 mt-4" value="Registrar" id="btn-registrar-semaforizacion" name="btn-registrar-semaforizacion"></div>
                                         </div>
                                     </div>
                                 </div>

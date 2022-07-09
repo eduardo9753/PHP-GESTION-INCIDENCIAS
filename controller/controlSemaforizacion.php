@@ -4,6 +4,7 @@
 include_once('model/modelSemaforizacion.php');
 include_once('model/modelAseets.php');
 include_once('model/modelLogin.php');
+include_once('model/modelGraficoCoordinador.php');
 
 
 //UTILS
@@ -22,6 +23,7 @@ class ControlSemaforizacion
 
     public $MODELSEMAFORIZACION;
     public $ASSETS;
+    public $GRAFICOCOOR;
     public $MSG;
     public $MODELTABLA;
     public $SESSION;
@@ -34,6 +36,7 @@ class ControlSemaforizacion
         $this->MSG = new ModeloMensaje();
         $this->MODELTABLA = new ModeloTabla();
         $this->SESSION = new ModeloSession();
+        $this->GRAFICOCOOR = new ModeloGraficoCood();
     }
 
 
@@ -64,21 +67,28 @@ class ControlSemaforizacion
             $dataCONCLUCION = $this->MODELTABLA->dataCONCLUCION();
             $dataTIPO_SEMAFORIZACION = $this->MODELTABLA->dataTIPO_SEMAFORIZACION();
 
-
-            //AREAS CON SERVICIOS
-            $dataAdministrativo = $this->MODELTABLA->dataAdministrativo();
-            $dataMedico = $this->MODELTABLA->dataMedico();
-            $dataAsistencial = $this->MODELTABLA->dataAsistencial();
-            $dataOtro = $this->MODELTABLA->dataOtro();
-
             include_once('view/coordinador/semaforizacion/formRegistroSemaforizacion.php');
         } catch (Exception $th) {
             echo $th->getMessage();
         }
     }
 
+    //NOTIFICACIONES CON JQUERY - Y POR USUARIO
+    public function notificacionPorUsuarioIncidenciaPendiente()
+    {
+        try {
+            //VER LA SESSION INICIADA  
+            $this->SESSION->isSession();
+            $id_usuario = $_SESSION["id_usuario"];
+            $dataIncidencia = $this->MODELSEMAFORIZACION->dataIncidenciaPendiente($id_usuario);
 
-    //FUNCION QUE ESTA ENLAZADO CON "causaEspecifica" , AHORA ES AUTONOMO
+            echo json_encode($dataIncidencia); //RETORNA DATOS EN FORMATO JASON PARA PARSEARLO EN EL JQUERY CON AJAX
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+
+    //FUNCION QUE ESTA ENLAZADO CON "causaEspecifica" , AHORA ES AUTONOMO *Jquery
     public function causaEspecifica()
     {
         try {
@@ -93,22 +103,50 @@ class ControlSemaforizacion
         }
     }
 
+    //FUNCION PARA ORIGEN CON "AREA"  , AHORA ES AUTONOMO *Jquery
+    public function origenArea()
+    {
+        try {
+            $id_origen = filter_input(INPUT_POST, 'id_origen');
+
+            //AREAS CON SERVICIOS
+            if ($id_origen == '1') { //ADMINISTRATIVO = 1
+                $datos = $this->MODELTABLA->dataAdministrativo();
+            } elseif ($id_origen == '2') { //MEDICO = 2
+                $datos = $this->MODELTABLA->dataMedico();
+            } elseif ($id_origen == '3') { //ASISTENCIAL = 3
+                $datos = $this->MODELTABLA->dataAsistencial();
+            } elseif ($id_origen == '4') { //OTROS
+                $datos = $this->MODELTABLA->dataOtro();
+            }
+
+            foreach ($datos as $datos) :
+                echo '<option value="' . $datos->id_area . '">' . $datos->nombre_area . '</option>';
+            endforeach;
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+
+
+
     public function insertIncidencia()
     {
         try {
             //VER LA SESSION INICIADA  
             $this->SESSION->isSession();
             $id_usuario = $_SESSION["id_usuario"];
+            $usuario = $_SESSION["nombre_usuario"];
 
             $directorio = "docs/";
             $filePaus = $directorio . $this->ASSETS->CLEAN(basename($_FILES['txt_file']['name']));
             move_uploaded_file($_FILES['txt_file']['tmp_name'], $filePaus);
 
-            //si es pendiente la fecha de cierre no se guarda ni la cinclusion "fundado - infundado"
-            if ($_POST['estado_semaforizacion'] == 1) {
+            //SI ESTA EN ESTADO PENDIENTE , LA FECHA DE CIERRE NO SE GUARDA NI LA CONCLUSION "fundado - infundado"
+            if ($_POST['estado_semaforizacion'] == 1) { //PENDIENTE
                 $fecha_cierre = "";
-                $conclusion = 5;
-            } else {
+                $conclusion = 5;  //EN SEGUIMIENTO
+            } else if ($_POST['estado_semaforizacion'] == 2) { //CERRADO
                 $fecha_cierre = $_POST['txt_fecha_cierre'];
                 $conclusion = $_POST['cbo_conclusion'];
             }
@@ -116,23 +154,12 @@ class ControlSemaforizacion
             //SERVICIO : HOSPITALARIO
             if ($_POST['cbo_servicio'] == 4) {
                 $servicio = $_POST['cbo_servicio'];
-                $habitacion = $_POST['cbo_habitacion'];
+                $habitacion = $_POST['cbo_habitacion'];  //GUARDAMOS LA HABITACION
             } else {
                 $servicio = $_POST['cbo_servicio'];
-                $habitacion = 109; //"NO APLICA" EN LA TABLA HABITACION
+                $habitacion = 109;                       //"NO APLICA" EN LA TABLA HABITACION
             }
 
-
-            //ORIGEN POR AREA  : SI ES DISTINTO AL PRIMERO ENTONCES ELIGIO ALGUN COMBO SELECCIONADO
-            if ($_POST['cbo_area_admin'] !== 'administrativo') { //SI LO QUE SE RECIBE ES DISTINTO DE "administratitvo" ENTONCES SE ELIJIO UN COMBO DISTINTO
-                $cbo_area = $_POST['cbo_area_admin'];
-            } else if ($_POST['cbo_area_medico'] !== 'medico') {
-                $cbo_area = $_POST['cbo_area_medico'];
-            } else if ($_POST['cbo_area_asisten'] !== 'asistencial') {
-                $cbo_area = $_POST['cbo_area_asisten'];
-            } else if ($_POST['cbo_area_otro'] !== 'otro') {
-                $cbo_area = $_POST['cbo_area_otro'];
-            }
 
             $semaforizacion = new Semaforizacion();
             $date = Date('Y-m-d h:i:s');
@@ -144,7 +171,7 @@ class ControlSemaforizacion
             $semaforizacion->setpaciente($_POST['txt_paciente']);
             $semaforizacion->setid_tipo_paciente($_POST['cbo_tipo_paciente']);
             $semaforizacion->setid_origen($_POST['cbo_origen']);
-            $semaforizacion->setid_area($cbo_area);
+            $semaforizacion->setid_area($_POST['cbo_area']);
             $semaforizacion->setid_especialidad($_POST['cbo_especialidad']);
             $semaforizacion->setpersonal_involucrado($_POST['txt_personal_involucrado']);
             $semaforizacion->setid_servicio($servicio);
@@ -153,7 +180,6 @@ class ControlSemaforizacion
             $semaforizacion->setnumero($_POST['txt_numero']);
             $semaforizacion->settomo($_POST['txt_tomo']);
             $semaforizacion->setid_prioridad($_POST['cbo_prioridad']);
-            //$semaforizacion->setid_causa($_POST['cbo_causa']);
             $semaforizacion->setid_causa_especifica($_POST['cbo_causa_especifica']);
             $semaforizacion->setdocumento($filePaus);
             $semaforizacion->setdetalle($_POST['txt_detalle']);
@@ -168,24 +194,29 @@ class ControlSemaforizacion
 
             if ($save) {
                 if ($semaforizacion->getid_tipo_semaforizacion() == 1) {
-                    header('Location:ReclamoPendiente');
+                    echo "<script>alert('TU RECLAMO SE REGISTRO CORRECTAMENTE: $usuario!'); window.location='ReclamoPendiente'</script>";
+                } else if ($semaforizacion->getid_tipo_semaforizacion() == 2) {
+                    echo "<script>alert('TU INCIDENCIA SE REGISTRO CORRECTAMENTE: $usuario!'); window.location='InidenciaPendiente'</script>";
                 } else {
-                    header('Location:InidenciaPendiente');
+                    echo "<script>alert('TU ATENCION SE REGISTRO CORRECTAMENTE: $usuario!'); window.location='Incidencia'</script>";
                 }
             } else {
-                header('Location:Incidencia');
+                echo "<script>alert('$usuario! : TUS DATOS NO SE REGISTRARON :( - COMUNICAR AL AREA DE SISTEMAS'); window.location='Incidencia'</script>";
             }
         } catch (Exception $th) {
             echo $th->getMessage();
         }
     }
 
+
+    //FUNCION EN DONDE SE CIERRA LA INCIDENCIA CON LA CONCLUSION
     public function ActualizarIncidencia()
     {
         try {
             //VER LA SESSION INICIADA  
             $this->SESSION->isSession();
             $id_usuario = $_SESSION["id_usuario"];
+            $usuario = $_SESSION["nombre_usuario"];
             $semaforizacion = new Semaforizacion();
 
             if (isset($_FILES['txt_file']['name'])) {
@@ -209,14 +240,40 @@ class ControlSemaforizacion
             }
 
             if ($save) {
-                header('Location:InidenciaPendiente');
+                echo "<script>alert('INCIDENCIA ACTUALIZADA CORRECTAMENTE: $usuario!'); window.location='InidenciaPendiente'</script>";
             } else {
-                echo "no guardado";
+                echo "<script>alert('INCIDENCIA NO ACTUALIZADA :( - $usuario!'); window.location='InidenciaPendiente'</script>";
             }
         } catch (Exception $th) {
             echo $th->getMessage();
         }
     }
+
+    //FUNCION DONDE SE EDITA LA DETALLE Y ACCION INMEDIATA
+    public function editarIncidencia()
+    {
+        try {
+            //VER LA SESSION INICIADA  
+            $this->SESSION->isSession();
+            $usuario = $_SESSION["nombre_usuario"];
+            $semaforizacion = new Semaforizacion();
+
+            $semaforizacion->setdetalle($_POST['txt_detalle']);
+            $semaforizacion->setaccion_inmediata($_POST['txt_accion_inmediata']);
+            $semaforizacion->setid($_POST['txt_id']);
+
+            $save = $this->MODELSEMAFORIZACION->editarDataSemaforizacion($semaforizacion);
+
+            if ($save) {
+                echo "<script>alert('INCIDENCIA ACTUALIZADA CORRECTAMENTE: $usuario!'); window.location='InidenciaPendiente'</script>";
+            } else {
+                echo "<script>alert('INCIDENCIA NO ACTUALIZADA :( - $usuario!'); window.location='InidenciaPendiente'</script>";
+            }
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+
 
     public function ActualizarReclamo()
     {
@@ -224,6 +281,7 @@ class ControlSemaforizacion
             //VER LA SESSION INICIADA  
             $this->SESSION->isSession();
             $id_usuario = $_SESSION["id_usuario"];
+            $usuario = $_SESSION["nombre_usuario"];
             $semaforizacion = new Semaforizacion();
 
             if (isset($_FILES['txt_file']['name'])) {
@@ -247,9 +305,9 @@ class ControlSemaforizacion
             }
 
             if ($save) {
-                header('Location:ReclamoPendiente');
+                echo "<script>alert('RECLAMO ACTUALIZADO CORRECTAMENTE: $usuario!'); window.location='ReclamoPendiente'</script>";
             } else {
-                echo "no guardado";
+                echo "<script>alert('RECLAMO NO ACTUALIZADO :( - $usuario!'); window.location='ReclamoPendiente'</script>";
             }
         } catch (Exception $th) {
             echo $th->getMessage();

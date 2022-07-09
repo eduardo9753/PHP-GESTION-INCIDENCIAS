@@ -42,7 +42,6 @@ class ModeloSemaforizacion
                     $semaforizacion->getnumero(),
                     $semaforizacion->gettomo(),
                     $semaforizacion->getid_prioridad(),
-                    #$semaforizacion->getid_causa(),
                     $semaforizacion->getid_causa_especifica(),
                     $semaforizacion->getdocumento(),
                     $semaforizacion->getdetalle(),
@@ -71,6 +70,22 @@ class ModeloSemaforizacion
                     $semaforizacion->getid_conclusion(),
                     $semaforizacion->getid_estado_semaforizacion(),
                     $semaforizacion->getdetalle_final(),
+                    $semaforizacion->getid()
+                )
+            );
+            return $stm;
+        } catch (Exception $th) {
+            echo $th->getMessage();
+        }
+    }
+
+    public function editarDataSemaforizacion(Semaforizacion $semaforizacion){
+        try {
+            $sql = "UPDATE SEMAFORIZACION SET detalle =?, accion_inmediata=? WHERE id = ?";
+            $stm = $this->MYSQL->ConectarBD()->prepare($sql)->execute(
+                array(
+                    $semaforizacion->getdetalle(),
+                    $semaforizacion->getaccion_inmediata(),
                     $semaforizacion->getid()
                 )
             );
@@ -116,7 +131,7 @@ class ModeloSemaforizacion
         }
     }
 
-    public function dataIncidenciaPendiente()
+    public function dataIncidenciaPendiente($id_usuario)
     {
         try {
             $sql = "SELECT * FROM SEMAFORIZACION sema 
@@ -129,7 +144,8 @@ class ModeloSemaforizacion
             INNER JOIN procedencia pro ON pro.id_procedencia = sema.id_procedencia 
             INNER JOIN areas ar ON ar.id_area = sema.id_area
             INNER JOIN prioridad prio ON prio.id_prioridad = sema.id_prioridad
-            WHERE sema.id_estado_semaforizacion IN ('1') AND sema.id_tipo_semaforizacion IN('2') ";
+            INNER JOIN usuario usu ON usu.id_usuario = sema.id_usuario
+            WHERE sema.id_estado_semaforizacion IN ('1') AND sema.id_tipo_semaforizacion IN('2') AND usu.id_usuario IN('$id_usuario') ";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute(array());
             return $stm->fetchAll(PDO::FETCH_OBJ);
@@ -161,6 +177,7 @@ class ModeloSemaforizacion
     }
 
 
+    //PARA EL SELECT DINAMICO
     public function causaEspecificaById($id_causa)
     {
         try {

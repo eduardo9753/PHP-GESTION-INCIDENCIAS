@@ -4,6 +4,7 @@
 include_once('model/modelTabla.php');
 include_once('model/modelSemaforizacion.php');
 include_once('model/modelAseets.php');
+include_once('model/modelGraficoCoordinador.php');
 
 
 //UTILS
@@ -21,6 +22,7 @@ class ControlTabla
 
     public $MODELTABLA;
     public $MODELSEMAFORIZACION;
+    public $GRAFICOCOOR;
     public $MSG;
     public $ASSETS;
     public $SESSION;
@@ -33,6 +35,7 @@ class ControlTabla
         $this->MODELSEMAFORIZACION = new ModeloSemaforizacion();
         $this->ASSETS = new ModeloAssets();
         $this->SESSION = new ModeloSession();
+        $this->GRAFICOCOOR = new ModeloGraficoCood();
     }
 
 
@@ -47,11 +50,13 @@ class ControlTabla
                 $ruta = 'InidenciaPendiente';
                 $active_seguimiento = "active";
                 $show_seguimiento = "show";
+                $flag_notificacion = 1;  //PARA ACTIVAR LAS NOTIFICACIONES
             }
 
             $titulo = "INCIDENCIAS EN ESTADO PENDIENTE";
+            $id_usuario = $_SESSION["id_usuario"];
 
-            $dataIncidencia = $this->MODELSEMAFORIZACION->dataIncidenciaPendiente();
+            $dataIncidencia = $this->MODELSEMAFORIZACION->dataIncidenciaPendiente($id_usuario);
             $dataCONCLUCION = $this->MODELTABLA->dataCONCLUCION();
 
             include_once('view/coordinador/tablas/IncidenciaPendiente.php');
@@ -83,4 +88,6 @@ class ControlTabla
             echo $th->getMessage();
         }
     }
+
+    //echo "<script>alert('RECLAMOS PENDIENTES!'); window.location='InidenciaPendiente'</script>";
 }

@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     <div class="card-header d-flex align-items-center">
-                        <h3 class="h4">Tabla</h3>
+                        <h3 class="h4">Tabla - Pendientes </h3>
                     </div>
                     <!--<div> <button type="submit" class="btn btn-outline-danger" name="btn_update" id="btn_update">REALIZADO</button></div>-->
                     <div class="card-body">
@@ -27,7 +27,7 @@
                                     <tr>
                                         <th>N°</th>
                                         <th>PACIENTE</th>
-                                        <th>N°DOCUMENTO</th>
+                                        <th>DOCUMENTO</th>
                                         <th>TIPO</th>
                                         <th>ORIGEN</th>
                                         <th>MES</th>
@@ -35,8 +35,10 @@
                                         <th>PROCEDENCIA</th>
                                         <th>PRIORIDAD</th>
                                         <th>AREA</th>
-                                        <th>FECHA INCIDENTE</th>
+                                        <th>FECHA</th>
+                                        <th>USUARIO</th>
                                         <th><i class='bx bxs-file-pdf'></i></th>
+                                        <th>EDIT</th>
                                         <th>VIEW</th>
                                     </tr>
                                 </thead>
@@ -45,17 +47,22 @@
                                         <tr>
                                             <th scope="row"><?php echo $data->num_requerimiento ?></th>
                                             <td><?php echo $data->paciente ?></td>
-                                            <td><?php echo $data->numero_documento ?></td>
+                                            <td class="text-center"><?php echo $data->numero_documento ?></td>
                                             <td><?php echo $data->nombre_tipo_paciente ?></td>
                                             <td><?php echo $data->nombre_origen ?></td>
                                             <td><?php echo $data->mes_incidencia ?></td>
                                             <td><?php echo $data->nombre_servicio ?></td>
-                                            <td><?php echo $data->nombre_procedencia ?></td>
-                                            <td><?php echo $data->nombre_prioridad ?></td>
+                                            <td class="text-center"><?php echo $data->nombre_procedencia ?></td>
+                                            <td class="text-center"><?php echo $data->nombre_prioridad ?></td>
                                             <td><?php echo $data->nombre_area ?></td>
                                             <td><?php echo $data->fecha_incidencia ?></td>
+                                            <td class="text-center"><?php echo $data->nombre_usuario ?></td>
                                             <td><a class="btn btn-outline-danger" href="index.php?ruta=pdfIncidencia&id=<?php echo $data->id ?>" target="_blank"><i class='bx bxs-file-pdf bx-burst'></i></a></td>
+                                            <input type="text" name="flag_notificacion" id="flag_notificacion" value="<?php echo $flag_notificacion ?>" hidden>
                                             <!--<td><input type="checkbox" name="ids[]" value="<?php echo $data->id ?>" class="update_checkbox"></td>-->
+                                            <td>
+                                                <?php include('view/coordinador/modalSemaforizacion/modalActualizarIncidencia.php'); ?>
+                                            </td>
                                             <td>
                                                 <?php include('view/coordinador/modalSemaforizacion/modalIncidencia.php'); ?>
                                             </td>

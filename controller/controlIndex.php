@@ -57,6 +57,8 @@ class ControlIndex
         //VER LA SESSION INICIADA  
         $this->SESSION->isSession();
 
+        //echo "<script>alert('RECLAMOS PENDIENTES!'); window.location='InidenciaPendiente'</script>";
+
         //color de links
         if (isset($_REQUEST['ruta']) == 'dashboard') {
             $ruta = 'dashboard';

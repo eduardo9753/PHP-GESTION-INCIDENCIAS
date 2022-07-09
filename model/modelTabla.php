@@ -47,7 +47,7 @@ class ModeloTabla
     public function dataORIGEN()
     {
         try {
-            $sql = "SELECT * FROM ORIGEN";
+            $sql = "SELECT * FROM ORIGEN O ORDER BY O.id_origen DESC";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();
             return $stm->fetchAll(PDO::FETCH_OBJ);

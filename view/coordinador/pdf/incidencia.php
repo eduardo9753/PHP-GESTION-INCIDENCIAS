@@ -34,7 +34,7 @@ class PDF extends FPDF
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
-$pdf->SetFont('Times', 'B', 8);
+$pdf->SetFont('Times', 'B', 9.4);
 $pdf->SetFillColor(255, 0, 0);
 
 $pdf->Cell(60, 8, utf8_decode('N° '), 1, 0, 'C', 0);
@@ -95,30 +95,30 @@ $pdf->Cell(130, 8, utf8_decode($dataIncidenciaPDF->nombre_causa), 1, 1, 'C', 0);
 $pdf->Ln(8);
 
 
-$pdf->Cell(30, 8, utf8_decode('ESTADO'), 1, 0, 'C', 0);
-$pdf->Cell(30, 8, utf8_decode('TIPO'), 1, 0, 'C', 0);
-$pdf->Cell(130, 8, utf8_decode('CAUSA ESPECIFICA'), 1, 1, 'C', 0);
-$pdf->Cell(30, 8, utf8_decode($dataIncidenciaPDF->nombre_estado_semaforizacion), 1, 0, 'C', 0);
-$pdf->Cell(30, 8, utf8_decode($dataIncidenciaPDF->tipo_semaforizacion), 1, 0, 'C', 0);
-$pdf->Cell(130, 8, utf8_decode($dataIncidenciaPDF->nombre_causa_especifica), 1, 1, 'C', 0);
+$pdf->Cell(20, 8, utf8_decode('ESTADO'), 1, 0, 'C', 0);
+$pdf->Cell(23, 8, utf8_decode('TIPO'), 1, 0, 'C', 0);
+$pdf->Cell(147, 8, utf8_decode('CAUSA ESPECIFICA'), 1, 1, 'C', 0);
+$pdf->Cell(20, 8, utf8_decode($dataIncidenciaPDF->nombre_estado_semaforizacion), 1, 0, 'C', 0);
+$pdf->Cell(23, 8, utf8_decode($dataIncidenciaPDF->tipo_semaforizacion), 1, 0, 'C', 0);
+$pdf->Cell(147, 8, utf8_decode($dataIncidenciaPDF->nombre_causa_especifica), 1, 1, 'C', 0);
 $pdf->Ln(8);
 
 
 
-$pdf->SetFont('Times', 'B', 10);
+$pdf->SetFont('Times', 'B', 11);
 $pdf->Cell(190, 8, utf8_decode('DETALLE'), 1, 1, 'C', 0);
-$pdf->Multicell(190,3.5, utf8_decode(wordwrap($dataIncidenciaPDF->detalle, 125, "\n")), 1, 1);
+$pdf->Multicell(190,4.4, utf8_decode(wordwrap($dataIncidenciaPDF->detalle, 115, "\n")), 1, 1);
 $pdf->Ln(8);
 
 
-$pdf->SetFont('Times', 'B', 10);
+$pdf->SetFont('Times', 'B', 11);
 $pdf->Cell(190, 8, utf8_decode('DETALLE FINAL'), 1, 1, 'C', 0);
-$pdf->Multicell(190,3.5, utf8_decode(wordwrap($dataIncidenciaPDF->detalle_final, 125, "\n")), 1, 1);
+$pdf->Multicell(190,4.4, utf8_decode(wordwrap($dataIncidenciaPDF->detalle_final, 115, "\n")), 1, 1);
 $pdf->Ln(8);
 
-
+$pdf->SetFont('Times', 'B', 11);
 $pdf->Cell(190, 8, utf8_decode('ACCION INMEDIATA'), 1, 1, 'C', 0);
-$pdf->Multicell(190,3.5, utf8_decode(wordwrap($dataIncidenciaPDF->accion_inmediata, 125, "\n")), 1, 1);
+$pdf->Multicell(190,4.4, utf8_decode(wordwrap($dataIncidenciaPDF->accion_inmediata, 115, "\n")), 1, 1);
 $pdf->Ln(8);
 
 

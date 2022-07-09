@@ -23,6 +23,7 @@ class ModeloGrafico
     public function countRegistroInidenciaPendiente()
     {
         try {
+            $mes_actual = Date('Y-m-d');
             $sql = "SELECT * FROM SEMAFORIZACION sema 
             INNER JOIN estado_semaforizacion estasema ON estasema.id_estado_semaforizacion = sema.id_estado_semaforizacion 
             INNER JOIN tipo_semaforizacion tiposema ON tiposema.id_tipo_semaforizacion = sema.id_tipo_semaforizacion 
@@ -33,7 +34,7 @@ class ModeloGrafico
             INNER JOIN procedencia pro ON pro.id_procedencia = sema.id_procedencia 
             INNER JOIN areas ar ON ar.id_area = sema.id_area
             INNER JOIN prioridad prio ON prio.id_prioridad = sema.id_prioridad
-            WHERE sema.id_estado_semaforizacion IN ('1') AND sema.id_tipo_semaforizacion IN('2') ";
+            WHERE sema.id_estado_semaforizacion IN ('1') AND sema.id_tipo_semaforizacion IN('2') AND DATE_FORMAT(sema.fecha_incidencia, '%Y-%m-%d') = '$mes_actual'";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();
             $stm->fetchAll(PDO::FETCH_OBJ);
@@ -47,6 +48,7 @@ class ModeloGrafico
     public function countRegistroInidenciaCerrada()
     {
         try {
+            $mes_actual = Date('Y-m-d');
             $sql = "SELECT * FROM SEMAFORIZACION sema 
             INNER JOIN estado_semaforizacion estasema ON estasema.id_estado_semaforizacion = sema.id_estado_semaforizacion 
             INNER JOIN tipo_semaforizacion tiposema ON tiposema.id_tipo_semaforizacion = sema.id_tipo_semaforizacion 
@@ -57,7 +59,7 @@ class ModeloGrafico
             INNER JOIN procedencia pro ON pro.id_procedencia = sema.id_procedencia 
             INNER JOIN areas ar ON ar.id_area = sema.id_area
             INNER JOIN prioridad prio ON prio.id_prioridad = sema.id_prioridad
-            WHERE sema.id_estado_semaforizacion IN ('2') AND sema.id_tipo_semaforizacion IN('2') ";
+            WHERE sema.id_estado_semaforizacion IN ('2') AND sema.id_tipo_semaforizacion IN('2') AND DATE_FORMAT(sema.fecha_incidencia, '%Y-%m-%d') = '$mes_actual'";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();
             $stm->fetchAll(PDO::FETCH_OBJ);
@@ -71,6 +73,7 @@ class ModeloGrafico
     public function countRegistroReclamoPendiente()
     {
         try {
+            $mes_actual = Date('Y-m-d');
             $sql = "SELECT * FROM SEMAFORIZACION sema 
             INNER JOIN estado_semaforizacion estasema ON estasema.id_estado_semaforizacion = sema.id_estado_semaforizacion 
             INNER JOIN tipo_semaforizacion tiposema ON tiposema.id_tipo_semaforizacion = sema.id_tipo_semaforizacion 
@@ -81,7 +84,7 @@ class ModeloGrafico
             INNER JOIN procedencia pro ON pro.id_procedencia = sema.id_procedencia 
             INNER JOIN areas ar ON ar.id_area = sema.id_area
             INNER JOIN prioridad prio ON prio.id_prioridad = sema.id_prioridad
-            WHERE sema.id_estado_semaforizacion IN ('1') AND sema.id_tipo_semaforizacion IN('1')";
+            WHERE sema.id_estado_semaforizacion IN ('1') AND sema.id_tipo_semaforizacion IN('1') AND DATE_FORMAT(sema.fecha_incidencia, '%Y-%m-%d') = '$mes_actual'";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();
             $stm->fetchAll(PDO::FETCH_OBJ);
@@ -95,6 +98,7 @@ class ModeloGrafico
     public function countRegistroReclamoCerrado()
     {
         try {
+            $mes_actual = Date('Y-m-d');
             $sql = "SELECT * FROM SEMAFORIZACION sema 
             INNER JOIN estado_semaforizacion estasema ON estasema.id_estado_semaforizacion = sema.id_estado_semaforizacion 
             INNER JOIN tipo_semaforizacion tiposema ON tiposema.id_tipo_semaforizacion = sema.id_tipo_semaforizacion 
@@ -105,7 +109,7 @@ class ModeloGrafico
             INNER JOIN procedencia pro ON pro.id_procedencia = sema.id_procedencia 
             INNER JOIN areas ar ON ar.id_area = sema.id_area
             INNER JOIN prioridad prio ON prio.id_prioridad = sema.id_prioridad
-            WHERE sema.id_estado_semaforizacion IN ('2') AND sema.id_tipo_semaforizacion IN('1') ";
+            WHERE sema.id_estado_semaforizacion IN ('2') AND sema.id_tipo_semaforizacion IN('1') AND DATE_FORMAT(sema.fecha_incidencia, '%Y-%m-%d') = '$mes_actual'";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();
             $stm->fetchAll(PDO::FETCH_OBJ);

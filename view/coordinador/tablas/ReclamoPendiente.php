@@ -26,7 +26,7 @@
                                     <tr>
                                         <th>N°</th>
                                         <th>PACIENTE</th>
-                                        <th>N°DOCUMENTO</th>
+                                        <th>DOCUMENTO</th>
                                         <th>TIPO</th>
                                         <th>ORIGEN</th>
                                         <th>MES</th>
@@ -34,7 +34,7 @@
                                         <th>PROCEDENCIA</th>
                                         <th>PRIORIDAD</th>
                                         <th>AREA</th>
-                                        <th>FECHA INCIDENTE</th>
+                                        <th>FECHA</th>
                                         <th>PDF</th>
                                         <th>VIEW</th>
                                     </tr>
@@ -46,12 +46,11 @@
                                             <td><?php echo $data->paciente ?></td>
                                             <td><?php echo $data->numero_documento ?></td>
                                             <td><?php echo $data->nombre_tipo_paciente ?></td>
-
                                             <td><?php echo $data->nombre_origen ?></td>
                                             <td><?php echo $data->mes_incidencia ?></td>
                                             <td><?php echo $data->nombre_servicio ?></td>
                                             <td><?php echo $data->nombre_procedencia ?></td>
-                                            <td><?php echo $data->nombre_prioridad ?></td>
+                                            <td class="text-center"><?php echo $data->nombre_prioridad ?></td>
                                             <td><?php echo $data->nombre_area ?></td>
                                             <td><?php echo $data->fecha_incidencia ?></td>
                                             <td><a class="btn btn-outline-danger" href="index.php?ruta=pdfReclamo&id=<?php echo $data->id ?>" target="_blank"><i class='bx bxs-file-pdf bx-burst'></i></a></td>

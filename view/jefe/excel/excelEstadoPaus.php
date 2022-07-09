@@ -64,7 +64,7 @@ foreach ($dataExcelPaus as $data) :
         ->setCellValue("K$i", $data->nombre_especialidad)
         ->setCellValue("L$i", $data->personal_involucrado)
         ->setCellValue("M$i", $data->nombre_servicio)
-        ->setCellValue("N$i", $data->habitacion)
+        ->setCellValue("N$i", $data->nombre_habitacion)
         ->setCellValue("O$i", $data->nombre_procedencia)
         ->setCellValue("P$i", $data->numero_procedencia)
         ->setCellValue("Q$i", $data->tomo)
