@@ -47,6 +47,7 @@
  <script src="public/js/estadoHospitalario.js"></script>
  <script src="public/js/origenArea.js"></script>
  <script src="public/js/validarCampos.js"></script>
+ <!--<script src="public/js/validarRadio.js"></script>-->
  <!--<script src="public/js/notificaciones.js"></script> -->
 
  </body>

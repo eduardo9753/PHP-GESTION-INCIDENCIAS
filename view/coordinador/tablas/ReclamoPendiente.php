@@ -35,6 +35,7 @@
                                         <th>PRIORIDAD</th>
                                         <th>AREA</th>
                                         <th>FECHA</th>
+                                        <th>USUARIO</th>
                                         <th>PDF</th>
                                         <th>VIEW</th>
                                     </tr>
@@ -53,6 +54,7 @@
                                             <td class="text-center"><?php echo $data->nombre_prioridad ?></td>
                                             <td><?php echo $data->nombre_area ?></td>
                                             <td><?php echo $data->fecha_incidencia ?></td>
+                                            <td class="text-center"><?php echo $data->nombre_usuario ?></td>
                                             <td><a class="btn btn-outline-danger" href="index.php?ruta=pdfReclamo&id=<?php echo $data->id ?>" target="_blank"><i class='bx bxs-file-pdf bx-burst'></i></a></td>
                                             <td>
                                                 <?php include('view/coordinador/modalSemaforizacion/modalReclamo.php'); ?>

@@ -167,6 +167,7 @@ class ModeloSemaforizacion
             INNER JOIN procedencia pro ON pro.id_procedencia = sema.id_procedencia 
             INNER JOIN areas ar ON ar.id_area = sema.id_area
             INNER JOIN prioridad prio ON prio.id_prioridad = sema.id_prioridad
+            INNER JOIN usuario usu ON usu.id_usuario = sema.id_usuario
             WHERE sema.id_estado_semaforizacion IN ('1') AND sema.id_tipo_semaforizacion IN('1') ";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute(array());

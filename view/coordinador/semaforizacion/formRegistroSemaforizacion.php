@@ -286,7 +286,7 @@
                                                     <div class="d-flex justify-content-between">
                                                         <?php foreach ($dataTIPO_SEMAFORIZACION as $data) : ?>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" required type="radio" name="tipo_semaforizacion" value="<?php echo $data->id_tipo_semaforizacion; ?>" id="<?php echo $data->id_tipo_semaforizacion; ?>">
+                                                                <input class="form-check-input check" required type="radio" name="tipo_semaforizacion" value="<?php echo $data->id_tipo_semaforizacion; ?>" id="<?php echo $data->id_tipo_semaforizacion; ?>">
                                                                 <label class="form-check-label" for="<?php echo $data->id_tipo_semaforizacion; ?>">
                                                                     <?php echo $data->tipo_semaforizacion; ?>
                                                                 </label>

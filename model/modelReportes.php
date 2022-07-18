@@ -25,7 +25,7 @@ class ModeloReportes
             $sql = "SELECT 
                 sema.num_requerimiento,
                 sema.mes_incidencia,
-                sema.fecha_incidencia,
+                DATE_FORMAT(sema.fecha_incidencia, '%d/%m/%Y') AS fecha_incidencia,
                 docu.nombre_documento,
                 sema.numero_documento,
                 sema.paciente,
@@ -45,7 +45,7 @@ class ModeloReportes
                 sema.detalle,
                 sema.accion_inmediata,
                 estasema.nombre_estado_semaforizacion,
-                sema.fecha_cierre,
+                DATE_FORMAT(sema.fecha_cierre, '%d/%m/%Y') AS fecha_cierre,
                 concl.nombre_conclusion,
                 tisema.tipo_semaforizacion,
                 sema.detalle_final,
@@ -68,7 +68,7 @@ class ModeloReportes
                       INNER JOIN TIPO_SEMAFORIZACION tisema ON tisema.id_tipo_semaforizacion = sema.id_tipo_semaforizacion
                       INNER JOIN usuario usu ON usu.id_usuario = sema.id_usuario  
                       WHERE sema.id_estado_semaforizacion IN(1,2) AND sema.id_tipo_semaforizacion IN(1,2,3) AND DATE_FORMAT(sema.fecha_incidencia, '%Y-%m-%d') BETWEEN '$fecha_inicio_incidencia' AND '$fecha_fin_incidencia' 
-                      ORDER BY sema.fecha_incidencia DESC ";
+                      ORDER BY sema.fecha_incidencia ASC ";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();
             return $stm->fetchAll(PDO::FETCH_OBJ);
@@ -83,7 +83,7 @@ class ModeloReportes
             $sql = "SELECT 
                 sema.num_requerimiento,
                 sema.mes_incidencia,
-                sema.fecha_incidencia,
+                DATE_FORMAT(sema.fecha_incidencia, '%d/%m/%Y') AS fecha_incidencia,
                 docu.nombre_documento,
                 sema.numero_documento,
                 sema.paciente,
@@ -103,7 +103,7 @@ class ModeloReportes
                 sema.detalle,
                 sema.accion_inmediata,
                 estasema.nombre_estado_semaforizacion,
-                sema.fecha_cierre,
+                DATE_FORMAT(sema.fecha_cierre, '%d/%m/%Y') AS fecha_cierre,
                 concl.nombre_conclusion,
                 tisema.tipo_semaforizacion,
                 sema.detalle_final,
@@ -126,7 +126,7 @@ class ModeloReportes
                       INNER JOIN TIPO_SEMAFORIZACION tisema ON tisema.id_tipo_semaforizacion = sema.id_tipo_semaforizacion
                       INNER JOIN usuario usu ON usu.id_usuario = sema.id_usuario 
             WHERE sema.id_estado_semaforizacion IN(?) AND sema.id_tipo_semaforizacion IN(?) AND DATE_FORMAT(sema.fecha_incidencia, '%Y-%m-%d') BETWEEN '$fecha_inicio_incidencia' AND '$fecha_fin_incidencia'
-            ORDER BY sema.fecha_incidencia DESC ";
+            ORDER BY sema.fecha_incidencia ASC ";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute(array(
                 $estadoSemaforizacion->getid_estado_semaforizacion(),
