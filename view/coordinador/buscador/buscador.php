@@ -25,7 +25,7 @@
                                                 <!--start row-->
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" id="txt_buscador" name="txt_buscador" autocomplete="off" placeholder="Digite el Nombre o N° Documento o N° de Requimiento" required>
+                                                        <input type="text" class="form-control" id="txt_buscador" name="txt_buscador" autocomplete="off" placeholder="Digite el Nombre o N° Documento o N° de Reclamo" required>
                                                     </div>
                                                 </div>
 
@@ -56,7 +56,7 @@
                                                 <th>MES</th>
                                                 <th>SERVICIO</th>
                                                 <th>PROCEDENCIA</th>
-                                                <th>PRIORIDAD</th>
+                                                <th>NUMERO</th>
                                                 <th>AREA</th>
                                                 <th>INCIDENTE</th>
                                                 <th><i class='bx bxs-file-pdf'></i></th>

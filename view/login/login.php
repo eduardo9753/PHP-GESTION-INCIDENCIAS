@@ -48,7 +48,7 @@
                 <div class="logo">
                   <h1>PLATAFORMA DE ATENCION AL USUARIO</h1>
                 </div>
-                <p>PAUS - GESTION DE INCIDENCIAS.</p>
+                <p>PAUS - GESTION DE INCIDENCIAS - JORGE ALVA</p>
               </div>
             </div>
           </div>

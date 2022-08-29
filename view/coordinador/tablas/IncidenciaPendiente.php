@@ -25,7 +25,7 @@
                             <table class="table table-hover" id="datatable">
                                 <thead>
                                     <tr>
-                                        <th>N°</th>
+                                        <!--<th>N°</th>-->
                                         <th>PACIENTE</th>
                                         <th>DOCUMENTO</th>
                                         <th>TIPO</th>
@@ -45,8 +45,8 @@
                                 <tbody>
                                     <?php foreach ($dataIncidencia as $data) : ?>
                                         <tr>
-                                            <th scope="row"><?php echo $data->num_requerimiento ?></th>
-                                            <td><?php echo $data->paciente ?></td>
+                                            <!--<th scope="row"><?php echo $data->num_requerimiento ?></th>-->
+                                            <td class="black"><?php echo $data->paciente ?></td>
                                             <td class="text-center"><?php echo $data->numero_documento ?></td>
                                             <td><?php echo $data->nombre_tipo_paciente ?></td>
                                             <td><?php echo $data->nombre_origen ?></td>

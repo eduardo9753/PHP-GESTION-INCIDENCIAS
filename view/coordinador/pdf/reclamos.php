@@ -96,10 +96,12 @@ $pdf->Ln(8);
 
 
 $pdf->Cell(20, 8, utf8_decode('ESTADO'), 1, 0, 'C', 0);
-$pdf->Cell(23, 8, utf8_decode('TIPO'), 1, 0, 'C', 0);
+$pdf->Cell(23, 8, utf8_decode('NUMERO'), 1, 0, 'C', 0);
 $pdf->Cell(147, 8, utf8_decode('CAUSA ESPECIFICA'), 1, 1, 'C', 0);
 $pdf->Cell(20, 8, utf8_decode($dataIncidenciaPDF->nombre_estado_semaforizacion), 1, 0, 'C', 0);
-$pdf->Cell(23, 8, utf8_decode($dataIncidenciaPDF->tipo_semaforizacion), 1, 0, 'C', 0);
+$pdf->SetFont('Times', 'B', 9);
+$pdf->Cell(23, 8, utf8_decode($dataIncidenciaPDF->numero_procedencia .'-'.$dataIncidenciaPDF->tomo), 1, 0, 'C', 0);
+$pdf->SetFont('Times', 'B', 8);
 $pdf->Cell(147, 8, utf8_decode($dataIncidenciaPDF->nombre_causa_especifica), 1, 1, 'C', 0);
 $pdf->Ln(8);
 

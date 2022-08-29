@@ -14,7 +14,7 @@
                     <!-- Page-body start -->
                     <div class="page-body">
 
-
+                        <?php $date = Date('Y-m-d') ?>
                         <div class="row">
                             <!-- Basic Form-->
                             <div class="col-lg-6">
@@ -41,12 +41,12 @@
 
                                                 <div class="col-md-6">
                                                     <label for="">Fecha Inicio</label>
-                                                    <input type="date" class="form-control" name="txt_fecha_incidencia_inicio" id="txt_fecha_incidencia_inicio" required>
+                                                    <input type="date" class="form-control" value="<?php echo $date ?>" name="txt_fecha_incidencia_inicio" id="txt_fecha_incidencia_inicio" required>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <label for="">Fecha Fin</label>
-                                                    <input type="date" class="form-control" name="txt_fecha_incidencia_fin" id="txt_fecha_incidencia_fin" required>
+                                                    <input type="date" class="form-control" value="<?php echo $date ?>" name="txt_fecha_incidencia_fin" id="txt_fecha_incidencia_fin" required>
                                                 </div>
                                                 <div class="col-md-12 mt-4">
                                                     <div><input type="submit" class="btn btn-success w-100" value="Generar Reporte General Excel" id="btn-generar-excel-carta" name="btn-generar-excel-carta"></div>
@@ -88,12 +88,12 @@
 
                                                 <div class="col-md-6">
                                                     <label for="">Fecha Inicio</label>
-                                                    <input type="date" class="form-control" name="txt_fecha_incidencia_inicio" id="txt_fecha_incidencia_inicio" required>
+                                                    <input type="date" class="form-control" value="<?php echo $date ?>" name="txt_fecha_incidencia_inicio" id="txt_fecha_incidencia_inicio" required>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <label for="">Fecha Fin</label>
-                                                    <input type="date" class="form-control" name="txt_fecha_incidencia_fin" id="txt_fecha_incidencia_fin" required>
+                                                    <input type="date" class="form-control" value="<?php echo $date ?>" name="txt_fecha_incidencia_fin" id="txt_fecha_incidencia_fin" required>
                                                 </div>
                                                 <div class="col-md-12 mt-4">
                                                     <div><input type="submit" class="btn btn-success w-100" value="Generar Excel por Estados" id="btn-generar-excel-carta" name="btn-generar-excel-carta"></div>

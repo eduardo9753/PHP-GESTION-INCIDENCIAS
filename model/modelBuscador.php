@@ -34,7 +34,7 @@ class ModeloBuscador
             INNER JOIN prioridad prio ON prio.id_prioridad = sema.id_prioridad
             INNER JOIN conclucion con ON con.id_conclusion = sema.id_conclusion
             INNER JOIN usuario usu ON usu.id_usuario = sema.id_usuario
-            WHERE CONCAT(num_requerimiento,numero_documento,paciente) LIKE '%$caracter%'";
+            WHERE CONCAT(numero_procedencia,numero_documento,paciente) LIKE '%$caracter%'";
             $stm = $this->MYSQL->ConectarBD()->prepare($sql);
             $stm->execute();
             return $stm->fetchAll(PDO::FETCH_OBJ);

@@ -24,7 +24,7 @@
                             <table class="table table-hover" id="datatable">
                                 <thead>
                                     <tr>
-                                        <th>N°</th>
+                                        <!--<th>N°</th>-->
                                         <th>PACIENTE</th>
                                         <th>DOCUMENTO</th>
                                         <th>TIPO</th>
@@ -32,7 +32,7 @@
                                         <th>MES</th>
                                         <th>SERVICIO</th>
                                         <th>PROCEDENCIA</th>
-                                        <th>PRIORIDAD</th>
+                                        <th>NUMERO</th>
                                         <th>AREA</th>
                                         <th>FECHA</th>
                                         <th>USUARIO</th>
@@ -43,15 +43,15 @@
                                 <tbody>
                                     <?php foreach ($dataIncidencia as $data) : ?>
                                         <tr>
-                                            <th scope="row"><?php echo $data->num_requerimiento ?></th>
-                                            <td><?php echo $data->paciente ?></td>
+                                            <!--<th scope="row"><?php echo $data->num_requerimiento ?></th>-->
+                                            <td scope="row" class="black"><?php echo $data->paciente ?></td>
                                             <td><?php echo $data->numero_documento ?></td>
                                             <td><?php echo $data->nombre_tipo_paciente ?></td>
                                             <td><?php echo $data->nombre_origen ?></td>
                                             <td><?php echo $data->mes_incidencia ?></td>
                                             <td><?php echo $data->nombre_servicio ?></td>
                                             <td><?php echo $data->nombre_procedencia ?></td>
-                                            <td class="text-center"><?php echo $data->nombre_prioridad ?></td>
+                                            <td class="text-center"><?php echo $data->numero_procedencia . '-' . $data->tomo ?></td>
                                             <td><?php echo $data->nombre_area ?></td>
                                             <td><?php echo $data->fecha_incidencia ?></td>
                                             <td class="text-center"><?php echo $data->nombre_usuario ?></td>
